@@ -15,3 +15,10 @@ https://blog.csdn.net/qq_42321822/article/details/121163596?spm=1001.2014.3001.5
 This code comes from serval iteration, it might set a bad example for writing RL envirnoments. 
 
 So just use it for learning RL in eco-driving.
+
+Thanks @renzong Lian 's code which is a good educational code for me.
+
+This is their team's work :
+
+https://github.com/lryz0612/DRL-Energy-Management
+ 
