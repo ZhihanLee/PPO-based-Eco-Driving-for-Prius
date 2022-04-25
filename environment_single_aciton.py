@@ -411,15 +411,6 @@ class My_Env_simp(gym.Env):
 		# r_illegal = (car_spd > speedlimit) * (-1) + (car_spd == 0.1) * (-1) # ci1 * ((car_a > 0)*(car_a - 2.5)**2 + (car_a < 0)*(car_a + 2.5)**2) 
 		
 		r_illegal = (car_spd > speedlimit) * (0)
-		# 低速智能体究极惩罚
-		if len(self.car_spd_list) == self.max_step :
-			temp_list = self.car_spd_list
-			del self.car_spd_list[0]
-			self.car_spd_list.append(car_spd)
-			avg_car_spd = np.mean(self.car_spd_list)
-			r_illegal = (avg_car_spd > speedlimit)*(-400) + (avg_car_spd < 1)*(-400) + (self.displacement < 1600) * (-400)
-			self.car_spd_list = []
-			self.car_spd_list = temp_list
 
 		self.isdone = self.isdone + r_sucess
 
