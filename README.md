@@ -11,3 +11,7 @@ This code established a multi-intersections environment and a simplifed HEV mode
 If you never use GYM environment before, you can follow the instruction below:
 
 https://blog.csdn.net/qq_42321822/article/details/121163596?spm=1001.2014.3001.5502
+
+This code comes from serval iteration, it might set a bad example for writing RL envirnoments. 
+
+So just use it for learning RL in eco-driving.
