@@ -6,7 +6,16 @@ Learning-based Eco-driving Strategy Design for Connected Power-split Hybrid Elec
   
 which is accpeted by 2022 IEEE INTELLIGENT VEHICLES SYMPOSIUM
 
+![structure](https://user-images.githubusercontent.com/73014148/172302572-1f2f7f20-6e92-499c-8421-d6b4f3ddd2ce.png)
+
 This code established a multi-intersections environment and a simplifed HEV model.
+
+![trajectory](https://user-images.githubusercontent.com/73014148/172302531-84a7416d-e60e-43a5-bf1e-59689d6cf860.png)
+
+![V3-velocitytra](https://user-images.githubusercontent.com/73014148/172302591-7eea0b10-c0eb-454c-9d5f-f8f303499b87.png)
+
+![V3-reward](https://user-images.githubusercontent.com/73014148/172302487-cd43646c-5259-4b79-9e44-aadff60985e5.png)
+
 
 If you never use GYM environment before, you can follow the instruction below:
 
