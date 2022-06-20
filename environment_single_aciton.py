@@ -40,15 +40,7 @@ class My_Env_simp(gym.Env):
 	def __init__(self):
 		# 道路类对象实例化
 		self.RoadSegmentList = []
-		# # 训练的数据
-		# self.RoadSegmentList.append(Road(1, 60, 0, 525, 31, 49, -20))         # 嘉陵江东街
-		# self.RoadSegmentList.append(Road(2, 60, 525, 1480, 28, 51, -20))       # 白龙江东街
-		# self.RoadSegmentList.append(Road(3, 60, 1480, 2005, 30, 82, -20))      # 河西大街
-		# 随机相位尝试训练
-		# self.RoadSegmentList.append(Road(1, 60, 0, 525, 30, 50, rand.randint(-50,50)))         # 嘉陵江东街
-		# self.RoadSegmentList.append(Road(2, 60, 525, 1480, 40, 35, rand.randint(-50,50)))       # 白龙江东街
-		# self.RoadSegmentList.append(Road(3, 60, 1480, 2005, 20, 60, rand.randint(-50,50)))      # 河西大街
-		# # 参陈浩师兄多路口数据
+		# # 多路口数据
 		# self.RoadSegmentList.append(Road(1, 60, 0, 1200, 40, 60, 0))         # 嘉陵江东街
 		# self.RoadSegmentList.append(Road(2, 80, 1200, 2200, 40, 65, 0))       # 白龙江东街
 		# self.RoadSegmentList.append(Road(3, 80, 2200, 3700, 42, 65, 0))      # 河西大街
@@ -59,15 +51,7 @@ class My_Env_simp(gym.Env):
 		self.RoadSegmentList.append(Road(1, 20, 0, 550, 60, 40, 0))         # 嘉陵江东街 2.5
 		self.RoadSegmentList.append(Road(2, 20, 550, 1060, 50, 50, 30))       # 白龙江东街 7.3
 		self.RoadSegmentList.append(Road(3, 20, 1060, 1650, 40, 65, 20))      # 河西大街 22.5
-		# 庐山路实际数据
-		# self.RoadSegmentList.append(Road(1, 60, 0, 326, 31, 49, -20))         # 嘉陵江东街
-		# self.RoadSegmentList.append(Road(2, 65, 326, 679, 28, 51, -20))       # 白龙江东街
-		# self.RoadSegmentList.append(Road(3, 60, 679, 1005, 30, 82, -20))      # 河西大街
-		# self.RoadSegmentList.append(Road(4, 60, 1005, 1320, 38, 50, -30))      # 楠溪江东街
-		# self.RoadSegmentList.append(Road(5, 60, 1320, 1606, 38, 50, 0))     # 富春江大街
-		# RoadSegmentList.append(Road(6, 60, 1606, 1935, 27, 61, -30))     # 奥体大街
-		# RoadSegmentList.append(Road(7, 60, 1935, 2232, 38, 50, 0))     # 新安江街
-		# # RoadSegmentList.append(Road(8, 60, 2232, 2500, 99, 1, 0))     # 终点路段  
+
 		# 车辆对象实例化
 		self.Prius = Prius_model()
 
@@ -194,7 +178,7 @@ class My_Env_simp(gym.Env):
 		# 	self.RoadSegmentList[4].delay = rand.randint(-random_range,random_range)
 		# 	self.RoadSegmentList[5].delay = rand.randint(-random_range,random_range)
 
-		car_spd = 0.36                      # KM/h
+		car_spd = 20                     # KM/h
 		car_spd = car_spd/3.6             # m/s
 		car_a = 0
 		self.Prius.car_spd = car_spd
@@ -403,8 +387,6 @@ class My_Env_simp(gym.Env):
 			r_sucess = -1*((location.endpoint == 550)*3 + (location.endpoint == 1060)*3 + (location.endpoint == 1650)*3)
 
 		# 求r_illegal
-		# 普锐斯模型输出I记录了模型内部的转速、加速度 越界情况；取值1 2 4 9分别对应发动机、发电机、电动机、加速度越界
-		# I为和式，如取值为3则是发动机和发电机都发生了越界
 		ci1 = param.r_ille_ci1 # 参考Automated eco-driving in urban scenarios using deep reinforcement learning 
 		ci2 = param.r_ille_ci2
 		# ci3 = param.r_ille_ci3
@@ -559,27 +541,6 @@ class My_Env_simp(gym.Env):
 		f.close()
 
 	def write_sum_success_reward(self, cost_engine): # cost_engine是测试代码中的一个局部变量
-		# # RL agent记录-无速度跟踪
-		# del self.r_success_list[0]
-		# sum_success = np.sum(self.r_success_list)
-		# if sum_success == 105 :
-		# 	duration = self.t_total
-		# 	distribution_data = [duration, float(cost_engine)]
-		# 	filename = "/RL_no_follow_list_for_distribution " + ".csv"
-		# 	f = open(data_dir + filename ,'a')
-		# 	csv_write = csv.writer(f)
-		# 	csv_write.writerow(distribution_data) # 写入一个episode的r_success和
-		# 	f.close()		
-		# # IDM记录
-		# 	duration = self.t_total
-		# 	if cost_engine < 10 :
-		# 		distribution_data = [duration, cost_engine]
-		# 		filename = "/IDM_list_for_distribution " + ".csv"
-		# 		f = open(data_dir + filename ,'a')
-		# 		csv_write = csv.writer(f)
-		# 		csv_write.writerow(distribution_data) # 写入一个episode的r_success和
-		# 		f.close()	
-		# RL agent记录-速度跟踪
 		del self.r_success_list[0]
 		sum_success = np.sum(self.r_success_list)
 		if sum_success == 105 :
