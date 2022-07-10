@@ -31,3 +31,5 @@ This is their team's work :
 
 https://github.com/lryz0612/DRL-Energy-Management
  
+# Requirements
+![image](https://user-images.githubusercontent.com/73014148/178136729-8812cc55-d0ab-4259-82b5-04e4fedda07b.png)
