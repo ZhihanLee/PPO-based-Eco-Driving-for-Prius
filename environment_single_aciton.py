@@ -331,6 +331,10 @@ class My_Env_simp(gym.Env):
 			if self.displacement == self.travellength :
 				location = self.RoadSegmentList[len(self.RoadSegmentList)-1]
 				break
+			if self.displacement == 0 :
+				# 特殊情况，没能成功启动车辆
+				location = self.RoadSegmentList[0]
+				break
 
 			h = h + 1
 		speedlimit = location.maxspeed
