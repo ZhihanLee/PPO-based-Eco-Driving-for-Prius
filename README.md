@@ -5,6 +5,7 @@ This is the environment code for the paper
 Learning-based Eco-driving Strategy Design for Connected Power-split Hybrid Electric Vehicles at Signalized Corridors
   
 which is accpeted by 2022 IEEE INTELLIGENT VEHICLES SYMPOSIUM
+https://ieeexplore.ieee.org/document/9827278
 
 ![structure](https://user-images.githubusercontent.com/73014148/172302572-1f2f7f20-6e92-499c-8421-d6b4f3ddd2ce.png)
 
