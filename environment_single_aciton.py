@@ -663,7 +663,11 @@ class Road(object):
 class Prius_model():
 	# Gen3 Prius with a gear retio in MG2
     def __init__(self):
-        # # Prius parameters
+        '''
+	Prius parameters 
+	For the simulation in paper
+	
+	'''
         # # paramsmeters of car
         # self.Wheel_R = 0.287
         # self.mass = 1450
@@ -684,7 +688,11 @@ class Prius_model():
 		# # 最大整车输出功率
         # self.Prius_max_pwr = 100 * 1000
 
-        # LittleAnt parameters
+        '''
+	LittleAnt parameters 
+	For the vehicle road test in SEU
+	
+	'''
         # paramsmeters of car
         self.Wheel_R = 0.29775
         self.mass = 1080
