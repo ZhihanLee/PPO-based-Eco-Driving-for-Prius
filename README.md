@@ -34,3 +34,7 @@ https://github.com/lryz0612/DRL-Energy-Management
  
 # Requirements
 ![image](https://user-images.githubusercontent.com/73014148/178136729-8812cc55-d0ab-4259-82b5-04e4fedda07b.png)
+
+# Cite
+If this paper's work helps you, welcome to cite it:
+@INPROCEEDINGS{9827278,  author={Li, Zhihan and Zhuang, Weichao and Yin, Guodong and Ju, Fei and Wang, Qun and Ding, Haonan},  booktitle={2022 IEEE Intelligent Vehicles Symposium (IV)},   title={Learning-based Eco-driving Strategy Design for Connected Power-split Hybrid Electric Vehicles at signalized corridors},   year={2022},  volume={},  number={},  pages={1226-1233},  doi={10.1109/IV51971.2022.9827278}}
