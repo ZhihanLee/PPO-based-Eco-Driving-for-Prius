@@ -270,21 +270,9 @@ class My_Env_simp(gym.Env):
 		self.r_success_list = []
 		self.r_success_list.append("r_suc")
 
-		# DRL-EMS源码中的列表，我不一定用到的
-		# self.cost_Engine_list = [] # 这些都是以episode为单位记录的，不可以被reset方法在每个episode开始时重置
-		# self.cost_all_list = []
-		# self.cost_Engine_100Km_list = []
-		# self.mean_reward_list = []
-		# self.list_even = []
-		# self.list_odd = []
-		# self.mean_discrepancy_list = []
-		# self.SOC_final_list = []
-
 		return s
 	
 	def step(self, action): # 离散步长内的所有计算都发生在这里
-		# 调整转矩动作
-		# 智能体使用tanh激活，动作范围是-1到1
 		self.Prius.car_a = action * self.Prius.car_a_max
 		##### 确定上一步长末端的道路限速 #####
 		for h in range(len(self.RoadSegmentList)):                                     # 定位车辆在哪段路上，返回该段路的最高时速
@@ -311,7 +299,7 @@ class My_Env_simp(gym.Env):
 		# 排除车速异常，如果出现需要修正一下时间和位移
 		stop_flag = 0
 		if (t == 0) :
-			# print("停车了，妈的")
+			# print("停车了")
 			stop_flag = 1
 			self.displacement = self.displacement
 		else:
@@ -367,6 +355,7 @@ class My_Env_simp(gym.Env):
 		# 	# 惩罚SOC过低，避免负数
 		# 	r_SOC = param.illegal_soc_punish
 
+		# ###### 日常奖励 ######
 		###### 速度跟踪方案 ######
 		# 目标车速应该以该步长的 初始速度、初始到路口距离 和 步长内的加速度计算，用来评价该步长动作的可靠性
 		tar_spd = reward_traffic(location, Phase, remaining_time, speedlimit_last, self.s[0]*speedlimit_last, car_a, dis2inter_ini)
@@ -375,15 +364,13 @@ class My_Env_simp(gym.Env):
 				param.r_spd_cv3 * ((car_a - self.s[1]*2.5)**2 + (car_spd - self.s[0]*speedlimit_last)**2) +\
 				(car_spd > speedlimit) * (-10) + (car_spd < 1/3.6)*(-10)
 		r_moving = 0.8 * r_moving
-
-		# ###### 日常奖励 ######
+		###### 范围速度探索 ######
 		# r_moving = 200*(self.s[4] - self.dis2termin/self.travellength)*param.r_spd_cv1 +\
 		# 	 	((car_spd - speedlimit)**2 + (car_spd - 10/3.6)**2)* param.r_spd_cv2 +\
 		# 		param.r_spd_cv3 * ((car_a - self.s[1]*2.5)**2+ (car_spd - self.s[0]*speedlimit)**2) # 加速度和速度的一致性约束
 
 		# # 结算奖励
 		# 求r_success
-		# 计算得通过三个路口的奖励应该分别为3 20 55
 		r_sucess = 0
 		if Phase == 1 and self.displacement == location.endpoint and car_spd != 0 :
 			r_sucess = (location.endpoint == 550)*5 + (location.endpoint == 1060)*8.5 + (location.endpoint == 1650)*27.5
